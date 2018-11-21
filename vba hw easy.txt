@@ -1,0 +1,50 @@
+Sub Easy_Stock()
+
+Dim j As Double
+
+
+Dim TotalV As Double
+
+'Clear all'''''''''''''''''''''''''''''''''''''''''''''''''''
+    Columns("I:Q").Select
+    Selection.Clear
+'Headings''''''''''''''''''''''''''''''''''''''''''''''''''''
+    Cells(1, 9).Value = Cells(1, 1).Value
+    Cells(1, 10).Value = "Total Stock Value"
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+j = 2
+Cells(j, 9).Value = Cells(j, 1).Value
+
+LastRow = Cells(Rows.Count, 1).End(xlUp).Row
+
+    For i = 2 To LastRow
+
+If Cells(i, 1).Value = Cells(j, 9).Value Then
+
+TotalV = TotalV + Cells(i, 7).Value
+
+     Else
+     
+Cells(j, 10).Value = TotalV
+
+TotalV = Cells(i, 7).Value
+
+j = j + 1
+Cells(j, 9).Value = Cells(i, 1).Value
+
+
+
+
+End If
+    
+    Next i
+
+Cells(j, 10).Value = TotalV
+    
+    
+'resize''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Columns("I:Q").EntireColumn.AutoFit
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+Cells(1, 1).Select
+
+End Sub
